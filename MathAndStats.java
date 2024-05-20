@@ -5,7 +5,7 @@ import java.util.*; //Collections class
  public class MathAndStats{
 
     static int calcAvarage( ArrayList<Float> ints){
-        Float sum;
+        Float sum=0.0f;
         int average=0;
         int inputSize=ints.size();
         for(int i=0;i<inputSize;i++){
@@ -13,7 +13,8 @@ import java.util.*; //Collections class
         }
         average=Math.round(sum/(float)inputSize);
         return average;
-    }
+        }
+   
     static int calcMedian(ArrayList<Float> ints){
         int inputSize=ints.size(),median=0;
         Collections.sort(ints);
@@ -29,20 +30,22 @@ import java.util.*; //Collections class
     }
     static int calcVariance(ArrayList<Float> ints){
         int deviation=0,variance=0;
+        int inputSize=ints.size();
         int average=calcAvarage(ints);
         for(Float i:ints){
-             deviation+=Math.round((Math.pow(Math.round(i)-average,2)));
+             deviation+=Math.pow(Math.round(i)-average,2);
              }
-             variance=deviation/ints.size();
+             variance=Math.round(deviation/inputSize);
              
       return variance;
     }
     static int calcStandardDeviation(ArrayList<Float> ints){ 
         int standardDeviation=0;
         int variance=calcVariance(ints);
-        standardDeviation=Math.sqrt(variance);
+        standardDeviation=(int)Math.sqrt(variance);
         return standardDeviation;
     }
+
     
 
     //main method
@@ -60,18 +63,19 @@ import java.util.*; //Collections class
              while(s.hasNext()){
               fileContent.add(s.nextFloat());
               }
-             System.out.println("File read succesfully");
              s.close();
             }catch (Exception e){
                System.out.println("Problem reading the file");
              }
-    
-          calcAvarage(fileContent);
-          calcMedian(fileContent);
-          calcVariance(fileContent);
-          calcStandardDeviation(fileContent);
+             System.out.printf("Average: %d\n",calcAvarage(fileContent));
+             System.out.printf("Median: %d\n",calcMedian(fileContent));
+             System.out.printf("Variance: %d\n",calcVariance(fileContent));
+             System.out.printf("Standard Deviation: %d\n",calcStandardDeviation(fileContent));    
 
-        }     
+         }  
+         
+        }   
     }
-}
+    
+
  
