@@ -14,7 +14,6 @@ import java.util.Collections; //Collections class
             sum+=ints.get(i);
         }
         average=sum/(double)inputSize;
-        //System.out.println(average);
         return average;
         }
    
@@ -56,9 +55,9 @@ import java.util.Collections; //Collections class
         }else if (args.length>1) {
             System.out.println("Many arguments provided");
         }else{
-            String file=args[0];
+            String file=args[0]; ///gets the argument
             int ext=file.lastIndexOf(".");
-           if (file.lastIndexOf(".")!=-1){
+           if (file.lastIndexOf(".")!=-1){//checks extension
               String extension =file.substring(ext);
               if (extension.equals(".txt")){
                   ArrayList<Double> fileContent=new ArrayList<>();
@@ -68,9 +67,8 @@ import java.util.Collections; //Collections class
                           fileContent.add(s.nextDouble());
                     }
                    s.close();
-                 //  System.out.println(fileContent);
                   }catch (Exception e){
-                     System.out.println("Problem reading the file");
+                     System.out.println("Problem reading the file or data.txt doesnt exist");
                      return;
                    }
                    double average=calcAvarage(fileContent);
@@ -87,6 +85,7 @@ import java.util.Collections; //Collections class
               }   
                 }else{
                     System.out.println("include file extension");
+                    return;
                 }
                
              }
